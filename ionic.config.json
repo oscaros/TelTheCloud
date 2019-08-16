@@ -1,0 +1,7 @@
+{
+  "name": "TelTheCloud",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
