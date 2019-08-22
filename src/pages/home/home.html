@@ -9,22 +9,20 @@
 <ion-content padding>
   <ion-list no-lines>
 
-    <ion-item  >
-
-      <ion-input  round type="text" placeholder="Please input your unique identifier" name="username" #username></ion-input>
-
+    <ion-item>
+     <!--  <ion-input  round type="text" placeholder="Please input your unique identifier" name="username" #username></ion-input> -->
+     <!-- <ion-input [(ngModel)]="loginData.username" name="username" type="text" placeholder="Username" ></ion-input> -->
+      <ion-input [(ngModel)]="loginData.email" name="email" type="text" placeholder="Username" ></ion-input><br>
+     <!--  <ion-input [(ngModel)]="loginData.password" name="Password" type="text" placeholder="" ></ion-input> -->
     </ion-item>
 
     <ion-item>
-
       <!-- <ion-input type="password" placeholder="Password" name="password" #password></ion-input> -->
-
+      <ion-input [(ngModel)]="loginData.password" type="password" placeholder="Password" name="password" #password></ion-input>
     </ion-item>
 
-    <button ion-button round block (click)="signIn()">Sign In</button> <br>
-    
-
+    <!-- <button ion-button round block (click)="signIn()">Sign In</button> <br> -->
+    <button ion-button round block (click)="doLogin()">Sign In</button> <br>
     <button ion-button round outline block (click)="signUp()">Create Unique Identifier</button>
-
   </ion-list>
 </ion-content>

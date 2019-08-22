@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { RegisterPage} from '../register/register';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'; //added
@@ -12,7 +11,12 @@ export class HomePage {
 
  //declare some vars
   loading: any;
-  loginData = { username:'', password:'' };
+ // loginData = { username:'eve.holt@reqres.in', password:'cityslicka' };
+ //loginData = { email:'eve.holt@reqres.in', password:'cityslicka' };
+ loginData = { email:"eve.holt@reqres.in", password:"cityslicka" };
+
+  //"email": "eve.holt@reqres.in",
+   // "password": "cityslicka"
   data: any;
 
   //added LoadingController, ToastController, AuthServiceProvider
@@ -32,10 +36,11 @@ export class HomePage {
       this.loading.dismiss();
       this.data = result;
       localStorage.setItem('token', this.data.access_token);
-      this.navCtrl.setRoot(TabsPage);
-    }, (err) => {
+      this.navCtrl.setRoot(dashboard);
+    }, (error) => {
       this.loading.dismiss();
-      this.presentToast(err);
+      this.presentToast(error);
+      console.log(error);
     });
   }
 

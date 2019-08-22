@@ -9,7 +9,8 @@ import 'rxjs/add/operator/map';
   and Angular DI.
 */
 
-let apiUrl = 'http://localhost:8080/api/';
+//let apiUrl = 'http://localhost:8080/api/';
+let apiUrl = 'https://reqres.in/api/';
 
 @Injectable()
 export class AuthServiceProvider {
@@ -23,11 +24,12 @@ export class AuthServiceProvider {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
+        //this.http.post(apiUrl+'login', JSON.stringify(credentials), {headers: headers})
         this.http.post(apiUrl+'login', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
             resolve(res.json());
-          }, (err) => {
-            reject(err);
+          }, (error) => {
+            reject(error);
           });
     });
   }
@@ -40,8 +42,8 @@ export class AuthServiceProvider {
         this.http.post(apiUrl+'guest/signup', JSON.stringify(data), {headers: headers})
           .subscribe(res => {
             resolve(res.json());
-          }, (err) => {
-            reject(err);
+          }, (error) => {
+            reject(error);
           });
     });
   }
@@ -54,8 +56,8 @@ export class AuthServiceProvider {
         this.http.post(apiUrl+'logout', {}, {headers: headers})
           .subscribe(res => {
             localStorage.clear();
-          }, (err) => {
-            reject(err);
+          }, (error) => {
+            reject(error);
           });
     });
   }
