@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { RegisterPage} from '../register/register';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service'; //added
+import { DashboardPage} from '../dashboard/dashboard';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'page-home',
@@ -9,67 +12,33 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class HomePage {
 
- //declare some vars
-  loading: any;
- // loginData = { username:'eve.holt@reqres.in', password:'cityslicka' };
- //loginData = { email:'eve.holt@reqres.in', password:'cityslicka' };
- loginData = { email:"eve.holt@reqres.in", password:"cityslicka" };
+ 
 
-  //"email": "eve.holt@reqres.in",
-   // "password": "cityslicka"
-  data: any;
+ constructor(public http:Http, public navCtrl: NavController) {
 
-  //added LoadingController, ToastController, AuthServiceProvider
-  constructor(public navCtrl: NavController, private toastCtrl: ToastController, public authServiceProvider: AuthServiceProvider, public loadingCtrl: LoadingController) {
-		
-  }
+}
 
-  signUp(){
+ validateLogin()
+  {
 
-		  this.navCtrl.push(RegisterPage);
-
-   }
-
-  doLogin() {
-    this.showLoader();
-    this.authServiceProvider.login(this.loginData).then((result) => {
-      this.loading.dismiss();
-      this.data = result;
-      localStorage.setItem('token', this.data.access_token);
-      this.navCtrl.setRoot(dashboard);
-    }, (error) => {
-      this.loading.dismiss();
-      this.presentToast(error);
-      console.log(error);
-    });
-  }
-
- showLoader(){
-    this.loading = this.loadingCtrl.create({
-        content: 'Authenticating...'
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let data=JSON.stringify({username: this.username, password:this.password});
+    this.http.post('http://localhost:8180/codetest/index.php/restpostcontroller/login/',data,headers)
+    .map(res => res.json())
+    .subscribe(res => {
+    alert("success: Userid "+res.userid+" Access Token "+res.token);
+    this.navCtrl.push('DashboardPage');
+    }, (err) => {
+    alert("failed"+err);
     });
 
-    this.loading.present();
   }
 
-  presentToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'bottom',
-      dismissOnPageChange: true
-    });
+ signUp(){
+ this.navCtrl.push('RegisterPage');
+ }
 
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
-  }
-
-
-
-
-  
+ 
 
 }

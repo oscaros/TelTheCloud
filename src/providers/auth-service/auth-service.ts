@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 */
 
 //let apiUrl = 'http://localhost:8080/api/';
-let apiUrl = 'https://reqres.in/api/';
+let apiUrl = 'http://localhost:8180/codetest/index.php/restpostcontroller/';
 
 @Injectable()
 export class AuthServiceProvider {
@@ -22,12 +22,18 @@ export class AuthServiceProvider {
    login(credentials) {
     return new Promise((resolve, reject) => {
         let headers = new Headers();
+
+ headers.append('Access-Control-Allow-Origin', '*');
+ //headers.append('Access-Control-Allow-Credentials', 'TRUE');
+  headers.append('Access-Control-Allow-Methods', 'GET, PUT, POST');
+  headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
         headers.append('Content-Type', 'application/json');
 
         //this.http.post(apiUrl+'login', JSON.stringify(credentials), {headers: headers})
         this.http.post(apiUrl+'login', JSON.stringify(credentials), {headers: headers})
-          .subscribe(res => {
-            resolve(res.json());
+          .subscribe(response => {
+            resolve(response.json());
           }, (error) => {
             reject(error);
           });
