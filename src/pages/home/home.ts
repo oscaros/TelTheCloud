@@ -5,14 +5,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
- 
 
  constructor(public http:Http, public navCtrl: NavController) {
 
@@ -31,6 +29,7 @@ export class HomePage {
     this.navCtrl.push('DashboardPage');
     }, (err) => {
     alert("failed"+err);
+    console.log(err);
     });
 
   }

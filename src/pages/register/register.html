@@ -15,7 +15,7 @@
 
     <ion-item>
 
-      <ion-input type="text" placeholder="Your Unique ID will show here" name="fullname" #username></ion-input>
+      <ion-input type="text" placeholder="Your Unique ID will show here" [(ngModel)]="uniqueId" name="uniqueId" #uniqueid></ion-input>
 
     </ion-item>
 
@@ -24,7 +24,7 @@
 
   <div padding>
 
-  <button ion-button  round outline block (click)="doRegister()">Generate Unique ID</button>
+  <button ion-button  round outline block (click)="Register()">Generate Unique ID</button>
 
   </div>
 
