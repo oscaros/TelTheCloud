@@ -21,7 +21,7 @@ export class HomePage {
 
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let data=JSON.stringify({username: this.username, password:this.password});
+    let data=JSON.stringify({uniqueId: this.uniqueId});
     this.http.post('http://localhost:8180/codetest/index.php/restpostcontroller/login/',data,headers)
     .map(res => res.json())
     .subscribe(res => {
