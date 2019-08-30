@@ -13,10 +13,10 @@ import { Contacts } from '@ionic-native/contacts/ngx';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    Contacts           
+    HomePage//,
+    //Contacts           
     //RegisterPage//,
-    //DashboardPage
+    //DashboardPage  
   ],
   imports: [
     BrowserModule,

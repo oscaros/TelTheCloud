@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController/*, NavParams */} from 'ionic-angular';
-import { Component/*, ViewChild */} from '@angular/core';
+import { IonicPage} from 'ionic-angular';
 import {Http, Headers/*, RequestOptions*/}  from "@angular/http";
 import { LoadingController } from 'ionic-angular';
 import { NavController, AlertController } from 'ionic-angular';
